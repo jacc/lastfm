@@ -7,6 +7,7 @@ module.exports = class artistParse {
     this.playCount = content.stats.playcount;
     this.onTour = content.ontour;
     this.streamable = content.streamable;
-    this.bio = this.bio.summary;
+    this.bio = content.bio.summary;
+    this.bio.published = content.bio.published;
   }
 }
