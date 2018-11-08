@@ -3,6 +3,7 @@ const albumParse = require('./albumParse.js')
 const request = require("superagent");
 
 module.exports = class Client {
+  
   /**
    * Represents the API keys.
    * @param {string} key Last.fm API key
