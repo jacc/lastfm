@@ -1,9 +1,9 @@
-const albumParse = require('./albumParse.js')
+const albumParse = require("./albumParse.js");
+const artistParse = require("./artistParse.js");
 
 const request = require("superagent");
 
 module.exports = class Client {
-  
   /**
    * Represents the API keys.
    * @param {string} key Last.fm API key
@@ -19,14 +19,35 @@ module.exports = class Client {
    * @param {string} artist Name of album
    */
   getAlbumInfo(artist, album) {
-    if(!artist || !album) throw new Error('Missing artist/album');
+    if (!artist || !album) throw new Error("Missing artist/album.");
     return new Promise((resolve, reject) => {
       request
-        .get(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${this.lfm}&artist=${artist}&album=${album}&format=json`)
+        .get(
+          `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${
+            this.lfm
+          }&artist=${artist}&album=${album}&format=json`
+        )
         .end((err, res) => {
-          resolve(new albumParse(res.body.album))
-          reject(err)
-        })
-    })
+          resolve(new albumParse(res.body.album));
+          reject(err);
+        });
+    });
+  }
+
+  // FINISH
+  getArtistInfo(artist) {
+    if (!artist) throw new Error("Missing artist.");
+    return new Promise((resolve, reject) => {
+      request
+        .get(
+          `http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=${
+            this.lfm
+          }&format=json`
+        )
+        .end((err, res) => {
+          resolve(new artistParse(res.body.artist));
+          reject(err);
+        });
+    });
   }
 };
