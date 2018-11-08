@@ -1,0 +1,31 @@
+{
+  "name": "lastfm",
+  "version": "1.0.0",
+  "description": "A wrapper for the Last.fm API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacc/lastfm.git"
+  },
+  "keywords": [
+    "lastfm",
+    "api",
+    "updated",
+    "last.fm"
+  ],
+  "author": "jacc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacc/lastfm/issues"
+  },
+  "homepage": "https://github.com/jacc/lastfm#readme",
+  "devDependencies": {
+    "xo": "^0.23.0"
+  },
+  "dependencies": {
+    "superagent": "^4.0.0-beta.5"
+  }
+}
