@@ -12,6 +12,11 @@ module.exports = class Client {
     this.lfm = keys.key;
   }
 
+  /**
+   * Represents the information needed to get info.
+   * @param {string} artist Name of artist
+   * @param {string} artist Name of album
+   */
   getAlbumInfo(artist, album) {
     if(!artist || !album) throw new Error('Missing artist/album');
     return new Promise((resolve, reject) => {
