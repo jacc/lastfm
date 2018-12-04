@@ -2,6 +2,8 @@ const albumParse = require("./parsers/albumParse");
 const artistParse = require("./parsers/artistParse");
 const albumSearchParse = require('./parsers/albumSearchParse')
 const trackSearchParse = require('./parsers/trackSearchParse')
+const userInfoParse = require('./parsers/userInfoParse')
+
 
 const request = require("superagent");
 
@@ -122,12 +124,25 @@ module.exports = class Client {
       request.get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${track}&api_key=${
         this.lfm
       }&format=json${artist ? `&artist=${artist}` : ''}`)
-      .end((err, res) => {
-        resolve (new trackSearchParse(res.body))
-        reject(err)
-      })
+        .end((err, res) => {
+          resolve(new trackSearchParse(res.body))
+          reject(err)
+        })
     })
   }
 
   /* End track functions */
+
+  /* Begin user functions */
+
+  getUserInfo(user) {
+    if (!user) throw new Error('Missing username.')
+    return new Promise((resolve, reject) => {
+      request.get(`http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${user}&api_key=${this.lfm}&format=json`)
+        .end((err, res) => {
+          resolve(new userInfoParse(res.body.user))
+          reject(err)
+        })
+    })
+  }
 };
