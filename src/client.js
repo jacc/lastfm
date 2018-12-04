@@ -145,4 +145,17 @@ module.exports = class Client {
         })
     })
   }
+
+  // Finish getUserTopTracks
+
+  // getUserTopTracks(user, time) {
+  //   if(!user) throw new Error('Missing username.')
+  //   if(!time) return console.warn('No time period specified. Defaulting to overall.')
+  //   return new Promise((resolve, reject) => {
+  //     request.get(`http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&api_key=${this.lfm}&format=json&period=${time ? 'overall' : time}`)
+  //     .end((err, res) => {
+  //       resolve(new userTopTracksParse())
+  //     })
+  //   })
+  // }
 };
